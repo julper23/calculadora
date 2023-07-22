@@ -1,13 +1,15 @@
 import { useState } from 'react'
 
 import './App.css'
-import Big from "big.js"
+
+import useCalculadora from './hooks/useCalculadora'
 
 function App() {
-  const [valorAnterior,setValorAnterior] = useState("")
-  const [valorActual,setValorActual] = useState("")
-  const [operador,setOperador] = useState(null)
 
+
+  const {valorAnterior,valorActual,operador,agregarNum,borrarTodo,borrarUltimo,computar,calcular} = useCalculadora()
+
+ /*
   const sumar = (num1,num2)=>{
     return num1 + num2
   }
@@ -20,29 +22,6 @@ function App() {
   }
   const dividir = (num1,num2)=>{
     return num1 / num2
-  }
-
-  const agregarNum = (numero) => {
-    if(numero==="."&&valorActual.includes(".")) return
-    setValorActual((valorActual).toString()+numero)
-  }
-
-  const borrarTodo = () => {
-    setOperador(null)
-    setValorAnterior("")
-    setValorActual("")
-
-  }
-
-  const borrarUltimo = () =>  {
-    if(valorActual){
-      setValorActual((valorActual).toString().slice(0,-1))
-    }else{
-      if(operador){setOperador(null)}else{
-        setValorAnterior((valorAnterior).toString().slice(0,-1))
-      }
-    }
-    
   }
 
   const calcular = () => {
@@ -65,19 +44,7 @@ function App() {
     setValorActual("")
   }
 
-  const computar = (operador2) => {
-    if(!valorActual&&!valorAnterior) return
-    console.log(operador);
-    
-    if(operador===null){
-      console.log("aaa");
-      
-      setValorAnterior(valorActual||valorAnterior)
-      setValorActual("")
-    }
-    setOperador(operador2)
-  }
-
+*/
 
   return (
     <div className='calculadora'>
@@ -88,19 +55,19 @@ function App() {
       <button className='col-2' onClick={()=>{borrarTodo()}}>C</button>
       <button onClick={()=>{borrarUltimo()}}>&larr;</button>
       <button className='operador' onClick={()=>{computar("/")}}>/</button>
-      <button className='numero' onClick={()=>{agregarNum(7)}}>7</button>
-      <button className='numero' onClick={()=>{agregarNum(8)}}>8</button>
-      <button className='numero' onClick={()=>{agregarNum(9)}}>9</button>
+      <button className='numero' onClick={()=>{agregarNum("7")}}>7</button>
+      <button className='numero' onClick={()=>{agregarNum("8")}}>8</button>
+      <button className='numero' onClick={()=>{agregarNum("9")}}>9</button>
       <button className='operador' onClick={()=>{computar("X")}}>X</button>
-      <button className='numero' onClick={()=>{agregarNum(4)}}>4</button>
-      <button className='numero' onClick={()=>{agregarNum(5)}}>5</button>
-      <button className='numero' onClick={()=>{agregarNum(6)}}>6</button>
+      <button className='numero' onClick={()=>{agregarNum("4")}}>4</button>
+      <button className='numero' onClick={()=>{agregarNum("5")}}>5</button>
+      <button className='numero' onClick={()=>{agregarNum("6")}}>6</button>
       <button className='operador' onClick={()=>{computar("-")}}>-</button>
-      <button className='numero' onClick={()=>{agregarNum(1)}}>1</button>
-      <button className='numero' onClick={()=>{agregarNum(2)}}>2</button>
-      <button className='numero' onClick={()=>{agregarNum(3)}}>3</button>
+      <button className='numero' onClick={()=>{agregarNum("1")}}>1</button>
+      <button className='numero' onClick={()=>{agregarNum("2")}}>2</button>
+      <button className='numero' onClick={()=>{agregarNum("3")}}>3</button>
       <button className='operador' onClick={()=>{computar("+")}}>+</button>
-      <button className='col-2 numero' onClick={()=>{agregarNum(0)}}>0</button>
+      <button className='col-2 numero' onClick={()=>{agregarNum("0")}}>0</button>
       <button className='numero' onClick={()=>{agregarNum(".")}}>.</button>
       <button className='operador' onClick={()=>{calcular()}}>=</button>
     </div>
